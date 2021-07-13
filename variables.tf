@@ -1,14 +1,21 @@
 # Variables.tf
-variable "privatekeypath" {
+variable "project_id" {
     type = string
-    default = "~/.ssh/id_rsa"
+    default = "<project_id_of_gcp_console>"
 }
-
-variable "publickeypath" {
+variable "region" {
     type = string
-    default = "~/.ssh/id_rsa.pub"
+    default = "<region_need_to_deploy>"
 }
-
+variable "private_key_path" {
+    type = string
+    default = "<path_for_private_key>"
+}
+variable "public_key_path" {
+    type = string
+    default = "<path_for_publickey>" 
+}
 variable "user" {
     type = string
+    default = "<ssh_username>"
 }
