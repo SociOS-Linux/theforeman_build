@@ -1,0 +1,3 @@
+# theforeman_build
+# ignore json files
+*.json
