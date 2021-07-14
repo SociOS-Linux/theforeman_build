@@ -82,7 +82,7 @@ provisioner "remote-exec" {
 	"sudo yum -y localinstall https://yum.puppet.com/puppet6-release-el-7.noarch.rpm",
 	"sudo yum -y install epel-release centos-release-scl-rh",
 	"sudo yum -y update",
-	"echo 0 > /proc/sys/vm/overcommit_memory",
+	"sudo bash -c 'sysctl -w vm.overcommit_memory=0 >> /etc/sysctl.d/vm_overcommit.conf'",
 	"sudo yum -y install katello",
 	"sudo foreman-installer --scenario katello"
 	 ]
