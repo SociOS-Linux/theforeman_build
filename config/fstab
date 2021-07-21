@@ -1,0 +1,5 @@
+/var/lib/dhcpd /exports/var/lib/dhcpd 		none bind,auto 0 0
+/etc/dhcp /exports/etc/dhcp 			none bind,auto 0 0
+FQDN:/exports/etc/dhcp /mnt/nfs/etc/dhcp nfs ro,vers=3,auto,nosharecache,context="system_u:object_r:dhcp_etc_t:s0" 0 0
+FQDN:/exports/var/lib/dhcpd /mnt/nfs/var/lib/dhcpd nfs ro,vers=3,auto,nosharecache,context="system_u:object_r:dhcpd_state_t:s0" 0 0
+/var/lib/tftpboot /exports/var/lib/tftpboot 	none bind,auto 0 0

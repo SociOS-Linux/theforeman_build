@@ -9,3 +9,4 @@ sudo yum -y install katello
 sudo foreman-installer --scenario katello
 sudo sed -i '55 s/9090/8443/' /etc/foreman-proxy/settings.yml
 sudo systemctl restart foreman foreman-proxy
+sudo bash -c "grep 'username\|password' /root/.hammer/cli.modules.d/foreman.yml > credentials.txt"

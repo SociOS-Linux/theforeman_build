@@ -1,9 +1,9 @@
 #Google account and project 
 provider "google" {
   credentials 	= file("service-account.json")
-  project 		= var.project_id
-  region  		= var.region
-  zone		    = var.zone
+  project 		  = var.project_id
+  region  		  = var.region
+  zone		      = var.zone
 }
 #End google account and project
 
@@ -30,7 +30,7 @@ resource "google_compute_firewall" "default" {
 
 #Starting compute instance
 resource "google_compute_instance" "server" {
-  name 		    = var.instance_name
+  name 			    = var.instance_name
   machine_type  = var.machine_type
   tags          = ["http-server", "https-server"]
   
@@ -66,6 +66,10 @@ connection {
 		host        = "${google_compute_instance.server.network_interface.0.access_config.0.nat_ip}"
     }
 provisioner "file" {
+  source = "./config"
+  destination = "~/"
+}
+provisioner "file" {
   source = "./scripts"
   destination = "~/"
 }
@@ -74,7 +78,8 @@ provisioner "remote-exec" {
    "chmod 755 ~/scripts/*",
    "sudo sh ~/scripts/firewall_ports.sh",
    "sudo sh ~/scripts/foreman_installation.sh",
-   "sudo sh ~/scripts/katello_conf.sh"
+   "sudo sh ~/scripts/katello_configuration.sh"
+   "sudo sh ~/scripts/tftp_configuration.sh"
    ]
 }
  depends_on = [google_compute_firewall.default, google_compute_network.default,]
